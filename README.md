@@ -7,7 +7,7 @@ Compiler your testing script via:
 **test:**
 
  - name of your compiled and linked binary (linking your hw binary to the testing binary)
- - Get from `gcc -o hw1_test.o hw1.0`
+ - Get from `gcc -o test hw1_test.o hw1.0`
 
  **100:**
 
