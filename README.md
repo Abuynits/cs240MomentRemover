@@ -1,6 +1,6 @@
 # CS 240 Autograder
 
-Compiler your testing script via the provided instructions:
+Compiler your testing script via:
 
 `perl auto_grader.pl test 100`
 
