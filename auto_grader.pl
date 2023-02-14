@@ -20,12 +20,18 @@ system("clear");
 
 my $testerFile = $ARGV[0];  # file with the test cases
 
-
+print "===========Moment Preventer===========\n";
+if (-e $testerFile) {
+  print "found tester file: $testerFile\n";
+} else{
+ print "ERROR: tester file not found: $testerFile\n";
+ print "======================================\n";
+ exit 1;
+}
 system("rm $outputFile");
 system("touch $outputFile");
 my $loopCount = $ARGV[1]; # number of times run program
 open(my $LOG, '>>', $outputFile);
-print "===========Moment Preventer===========\n";
 select $LOG;
 
 for (my $i = 0; $i <= $loopCount; $i += 1) {  
@@ -36,8 +42,9 @@ for (my $i = 0; $i <= $loopCount; $i += 1) {
     if ($i == $loopCount){
         print "testing ... $i/$loopCount\n";
     }
+
 	if ($i%100==0){
-		select STDOUT;
+    select STDOUT;
 		print "reseting make files...\r";
 		select $LOG;
 		system("make clean");
@@ -73,6 +80,15 @@ for (my $i = 0; $i <= $loopCount; $i += 1) {
         system("rm $outputFile");
         exit 1;
     }
+    if ($i%50==0){
+      select STDOUT;
+      print "printing example output...\r";
+		  system("cat $outputFile");
+      sleep(1);
+      system("clear");
+      select $LOG;
+    }
+    
     system("cat /dev/null > $outputFile");
     
     #exit 1;
