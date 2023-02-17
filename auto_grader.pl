@@ -55,6 +55,7 @@ for (my $i = 0; $i <= $loopCount; $i += 1) {
     select $LOG;
 
     system("./$testerFile >> $outputFile 2>&1");
+    system("echo '====run:$i===' >> $outputFile 2>&1");
     #system("./$testerFile 1> $outputFile");
     #system("cat $outputFile");
     my $full_score = 0;
